@@ -13,22 +13,37 @@
 
 // Reemplaza los guiones por la constante para que utilice ese numero de puerto
 // Sabes por que lo definimos como constante y no como variable ? 
-app.listen(____, () => console.log(`Server running in ${____} port`));
+var express = require('express')
+var app = express()
+
+app.listen(3030, () => console.log(`Server running in ${3030} port`));
 
 // CONSIGNA 1
 // Ruta Raíz / Home
-app.get('/', _que_debemos_hacer_aqui_para_que_funcione_?_);
+app.get('/', function (req,res){
+
+  res.send("Ni Superman, Iron Man o La Mujer Maravilla son tan importantes cómo las y los Héroes de carne y hueso que encontrarás en este sitio. Esperamos que ellas y ellos te sirvan como inspiración para poder cumplir tus objetivos. Recuerda: ¡nunca pares de creer en ti!")
+
+})
 
 // CONSIGNA 2
 // Ruta /heroes
 // Consigna: enviar todo el array
-app.get(_nombre_de_ruta_, (_que_parametros_necesita_?_) => {
-  res.send(_donde_estan_los_datos_que_voy_a_enviar_?_);
+let fs = require('fs');
+
+app.get("/heroes"  , function (req,res){ 
+    
+  res.send(fs.readFileSync('heroes.json', 'utf-8'))
 });
 
 // CONSIGNA 3
 // Aqui creas la ruta para devolver la pagina de los creditos
 // Podes resolverlo en base a los ejemplos anteriores.
+// Consigna: enviar todo el array
+app.get("/creditos"  , function (req,res){ 
+    
+  res.send("Change may not always bring growth, but there is no growth without change.");
+});
 
 
 // Ruta... ¿Pára qué sirve esto?
